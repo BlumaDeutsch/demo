@@ -3,8 +3,10 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('השרת עובד בהצלחה! Hello World');
+  res.send('השרת עובד בהצלחה!');
 });
+
+app.use("/api", require("./routes/routes"));
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
