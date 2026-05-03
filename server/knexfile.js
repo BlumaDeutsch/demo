@@ -4,7 +4,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      connectionString: process.env.DATABASE_URL,
+      connectionString: process.env.DB_URL,
       ssl: { rejectUnauthorized: false } // נחוץ לעבודה מול Neon
     },
     migrations: {
