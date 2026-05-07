@@ -14,3 +14,8 @@ export const registerSchema = z.object({
     // אפשר להוסיף ולידציות מורכבות יותר כמו regex
     .regex(/[A-Z]/, "Password must contain at least one uppercase letter"),
 });
+
+export const loginSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(1, "Password is required"),
+});

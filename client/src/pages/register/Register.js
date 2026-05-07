@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
 
 import { registerSchema } from '../../schemas/userSchema';
 import { createUser } from '../../api/api';
@@ -10,6 +11,7 @@ import FormInput from '../../components/FormInput';
 import * as S from './Register.styles'; 
 
 const Register = () => {
+  const navigate = useNavigate();
   const methods = useForm({
     resolver: zodResolver(registerSchema),
     mode: "onTouched"
@@ -20,6 +22,7 @@ const Register = () => {
       await createUser(data);
       alert("User created successfully!");
       methods.reset();
+      navigate('/home'); // נווט לדף הבית לאחר ההרשמה המצליחה
     } catch (error) {
       alert(error.message || "Something went wrong");
     }
