@@ -58,7 +58,7 @@ export const getUserById = async (id) => {
 
 export const updateUser = async (id, userData) => {
     try {
-        const response = await API.put(`/users/${id}`, userData);
+        const response = await API.patch(`/users/${id}`, userData);
         return response.data;
     } catch (error) {
         throw error.response ? error.response.data : new Error("Server Error");

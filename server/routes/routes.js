@@ -78,18 +78,20 @@ router.post('/users', async (req, res) => { // create new user
     }
 });
 
-router.put('/users/:id', authenticateToken, async (req, res) => { // update user
+router.patch('/users/:id', authenticateToken, async (req, res) => { // update user
     try {
         const userId = req.params.id;
         const { username, email } = req.body;
-        await db('users').where({ id: userId }).update({ username, email });
-        res.json({ message: `User ${userId} updated successfully!` });
+        const [updatedUser] = await db('users').where({ id: userId }).update({ username, email }).returning(['id', 'username', 'email']);
+
+        res.json({ message: `User ${userId} updated successfully!`, user: updatedUser });
     } catch (error) {
+        console.log("error: ", error);
         res.status(500).json({ error: error.message });
     }
 });
 
-router.put('/users/:id/password', authenticateToken, async (req, res) => { // update user password
+router.patch('/users/:id/password', authenticateToken, async (req, res) => { // update user password
     try {
         const userId = req.params.id;
         const { currentPassword, newPassword } = req.body;
