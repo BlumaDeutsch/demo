@@ -51,6 +51,13 @@ export const HeroSection = styled.section`
   }
 `;
 
+export const PianoImage = styled.img`
+  max-width: 100%;  /* מונע מהתמונה לחרוג מהמסך */
+  height: auto;     /* שומר על הפרופורציות (יחס גובה-רוחב) כדי שהתמונה לא תימתח */
+  display: block;   /* מונע רווחים מיותרים בתחתית התמונה */
+  margin: 0 auto;   /* ממרכז את התמונה בתוך המיכל */
+`;
+
 export const HeroInner = styled.div`
   position: relative;
   z-index: 2;

@@ -30,11 +30,7 @@ const EditProfile = () => {
     const onSubmit = async (data) => {
         try {
             const response = await updateUser(user.id, data);
-            console.log("response: ", response);
-
-            const token = localStorage.getItem('token');
-            login(response.user, token);
-
+            login(response.user);
             navigate('/');
         } catch (error) {
             alert(error.response?.error || "עדכון נכשל");
