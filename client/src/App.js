@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { GlobalStyles } from './styles/GlobalStyles';
@@ -7,8 +7,15 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import EditProfile from './pages/editProfile/EditProfile';
 import Navbar from './components/Navbar';
+import { pingToServer } from './api/api';
+
 
 function App() {
+
+  useEffect(() => {
+    pingToServer();
+  }, []);
+
   return (
     <AuthProvider>
       <Router>

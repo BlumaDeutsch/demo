@@ -18,6 +18,16 @@ API.interceptors.request.use(
     }
 );
 
+export const pingToServer = async () => {
+    try {
+        const response = await API.get('/');
+        return response.data;
+    }
+    catch (error) {
+        throw error.response ? error.response.data : new Error("Server Error");
+    }
+};
+
 export const loginUser = async (credentials) => {
     try {
         const response = await API.post('/login', credentials);        
@@ -30,8 +40,6 @@ export const loginUser = async (credentials) => {
 export const createUser = async (userData) => {
     try {
         const response = await API.post('/users', userData);
-        console.log("response: ", response);
-
         return response.data;
     } catch (error) {
         throw error.response ? error.response.data : new Error("Server Error");
