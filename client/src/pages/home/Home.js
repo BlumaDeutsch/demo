@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import pianoIMG from '../../piano-violin.png';
 import * as S from './Home.styles';
 
@@ -47,7 +46,6 @@ const TESTIMONIALS = [
 
 
 const Home = () => {
-    const navigate = useNavigate();
     const [form, setForm] = useState({ name: '', phone: '', message: '' });
     const [sent, setSent] = useState(false);
 
